@@ -54,3 +54,12 @@ or
 ```
 hexdump -c message.enc
 ```
+11. Then i have create a file called "fst.txt"
+```
+echo "Master informatique FST" > fst.txt  
+```
+12. Then i have encrypted this file using the secret.key
+```
+openssl enc -aes-128-cbc -in fst.txt -out fst.enc -pass file:./secret.key
+```
+13. Then i have decrypted the file using the generated key
