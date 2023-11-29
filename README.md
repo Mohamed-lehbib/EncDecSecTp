@@ -63,3 +63,26 @@ echo "Master informatique FST" > fst.txt
 openssl enc -aes-128-cbc -in fst.txt -out fst.enc -pass file:./secret.key
 ```
 13. Then i have decrypted the file using the generated key
+
+## Transfer files using ssh
+
+- to transfer files we need to install ssh in case of ubuntu
+```
+sudo apt install openssh-server
+```
+- then to see the status of ssh
+```
+sudo systemctl status ssh
+```
+- then i enabled ssh
+```
+sudo systemctl enable ssh
+```
+- then i have started ssh
+```
+sudo systemctl start ssh
+```
+- then to transfer file
+```
+scp message.txt mohamed@172.18.0.1:/home/mohamed/Desktop
+```
