@@ -63,6 +63,14 @@ echo "Master informatique FST" > fst.txt
 openssl enc -aes-128-cbc -in fst.txt -out fst.enc -pass file:./secret.key
 ```
 13. Then i have decrypted the file using the generated key
+14. In this part i have generated the private key 
+```
+openssl genrsa -des3 -out key_kali.priv 4096
+```
+15. To generate the public key 
+```
+openssl rsa -pubout -in key_kali.priv -out key_kali.pub
+```
 
 ## Transfer files using ssh
 
@@ -84,5 +92,5 @@ sudo systemctl start ssh
 ```
 - then to transfer file
 ```
-scp message.txt mohamed@172.18.0.1:/home/mohamed/Desktop
+scp message.txt mohamed@192.168.137.242:/home/mohamed/Desktop
 ```
