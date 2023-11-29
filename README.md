@@ -62,12 +62,41 @@ echo "Master informatique FST" > fst.txt
 ```
 openssl enc -aes-128-cbc -in fst.txt -out fst.enc -pass file:./secret.key
 ```
+when i have run this command i got a œarning saying `*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.`
+to make it more secure i can do this
+```
+openssl enc -aes-128-cbc -in fst.txt -out fst.enc -iter 10000 -pass file:./secret.key
+```
 13. Then i have decrypted the file using the generated key
-14. In this part i have generated the private key 
+```
+openssl enc -d -aes-128-cbc -in fst.enc -out dec.txt -iter 10000 -pass file:./secret.key
+```
+14. Then i have created a folder and copied the file in it
+```
+mkdir -p Tp1 | cp fst.txt 'TP1 - SI.pdf' Tp1
+```
+15. Then i have ziped the folder using this command
+```
+tar -czvf archive.tar.gz Tp1
+```
+16. THen i have encrypted this zip using des3
+```
+openssl enc -des3 -in archive.tar.gz -out archive.tar.des3 -pass pass:1234 -iter 100
+```
+17. Then i have decrypted the zip
+```
+openssl enc -d -des3 -in archive.tar.des3 -out DecArchive.tar.gz -pass pass:1234 -iter 100
+```
+18.Then i have deziped it
+```
+tar -xzvf DecArchive.tar.gz
+```
+19. In this part i have generated the private key 
 ```
 openssl genrsa -des3 -out key_kali.priv 4096
 ```
-15. To generate the public key 
+20. To generate the public key 
 ```
 openssl rsa -pubout -in key_kali.priv -out key_kali.pub
 ```
