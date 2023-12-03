@@ -127,7 +127,7 @@ openssl pkeyutl -encrypt -in file.txt -pubin -inkey key_kali.pub -out file_encry
 ```
 26. Then i have sent the encrypted file using ssh 
 ```
-scp hello_encrypted.txt kali@192.168.137.242:/home/kali/Documents/ubuntu
+scp hello_encrypted.txt kali@192.168.137.242:/home/kali/Documents/tpSec
 ```
 27. Then i have decrypted the file using the rsa private key
 ```
