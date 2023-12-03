@@ -100,6 +100,40 @@ openssl genrsa -des3 -out key_kali.priv 4096
 ```
 openssl rsa -pubout -in key_kali.priv -out key_kali.pub
 ```
+21. Then i have encrypted the private key RSA using des3
+```
+openssl rsa -in key_kali.priv -des3 -out private_key_des3.des3
+```
+22. Then i have encrypted a file using the rsa key <br>
+- First i have created a file using this command
+```
+cat "q" file.txt 
+```
+- Then i have encrypted it using the rsa public Key
+```
+openssl rsautl -encrypt -inkey key_kali.pub -pubin -in file.txt -out file_encrypted.txt
+```
+23. I have shared the public key to my ubuntu user using ssh
+```
+scp key_kali.pub mohamed@192.168.137.242:/home/mohamed/Documents/Tp
+```
+24. I have created a file the ubuntu user
+```
+echo "Hello from ubuntu" > hello.txt
+```
+25. I have encrypted the file using the public key sent by the kali user
+```
+openssl rsautl -encrypt -inkey key_kali.pub -pubin -in hello.txt -out hello_encrypted.txt
+```
+26. Then i have sent the encrypted file using ssh 
+```
+scp hello_encrypted.txt kali@192.168.137.242:/home/kali/Documents/ubuntu
+```
+27. Then i have decrypted the file using the rsa private key
+```
+openssl rsautl -decrypt -inkey key_kali.priv -in hello_encrypted.txt -out hello.txt
+```
+
 
 ## Transfer files using ssh
 
