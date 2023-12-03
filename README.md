@@ -123,7 +123,7 @@ echo "Hello from ubuntu" > hello.txt
 ```
 25. I have encrypted the file using the public key sent by the kali user
 ```
-openssl rsautl -encrypt -inkey key_kali.pub -pubin -in hello.txt -out hello_encrypted.txt
+openssl pkeyutl -encrypt -in file.txt -pubin -inkey key_kali.pub -out file_encrypted.txt -pkeyopt rsa_padding_mode:oaep
 ```
 26. Then i have sent the encrypted file using ssh 
 ```
