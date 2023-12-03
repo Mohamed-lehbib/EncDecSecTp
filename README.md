@@ -107,7 +107,7 @@ openssl rsa -in key_kali.priv -des3 -out private_key_des3.des3
 22. Then i have encrypted a file using the rsa key <br>
 - First i have created a file using this command
 ```
-cat "q" file.txt 
+echo "hello world" > file.txt 
 ```
 - Then i have encrypted it using the rsa public Key
 ```
