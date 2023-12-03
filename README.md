@@ -111,7 +111,7 @@ echo "hello world" > file.txt
 ```
 - Then i have encrypted it using the rsa public Key
 ```
-openssl rsautl -encrypt -inkey key_kali.pub -pubin -in file.txt -out file_encrypted.txt
+openssl pkeyutl -encrypt -in file.txt -pubin -inkey key_kali.pub -out file_encrypted.txt -pkeyopt rsa_padding_mode:oaep
 ```
 23. I have shared the public key to my ubuntu user using ssh
 ```
