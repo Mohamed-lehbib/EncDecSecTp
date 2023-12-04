@@ -133,8 +133,13 @@ scp hello_encrypted.txt kali@192.168.137.242:/home/kali/Documents/tpSec
 ```
 openssl pkeyutl -decrypt -in hello_encrypted.txt -inkey key_kali.priv -out hello_decrypted.txt -pkeyopt rsa_padding_mode:oaep
 ```
-
-
+28. Then i have tried to encrypt a large file using the rsa Key
+```
+openssl pkeyutl -encrypt -in 'TP1 - SI.pdf'  -pubin -inkey key_kali.pub -out tp_encrypted.pdf -pkeyopt rsa_padding_mode:oaep
+```
+Then i got this error message `Public Key operation error
+20E0348AFFFF0000:error:0200006E:rsa routines:ossl_rsa_padding_add_PKCS1_OAEP_mgf1_ex:data too large for key size:../crypto/rsa/rsa_oaep.c:87:
+`
 ## Transfer files using ssh
 
 - to transfer files we need to install ssh in case of ubuntu
