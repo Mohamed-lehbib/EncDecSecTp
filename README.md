@@ -149,6 +149,9 @@ openssl rand -out secret.key -hex 32
 openssl pkeyutl -encrypt -in secret.key -pubin -inkey key_kali.pub -out secret_encrypt.key -pkeyopt rsa_padding_mode:oaep
 ```
 31. Then i have sent the encrypted secret key to my kali user
+```
+scp secret_encrypt.key kali@192.168.100.156:/home/kali/Documents/tpSec
+```
 32. Then i have decrypted the secret encrypted key using the private key
 ```
 openssl pkeyutl -decrypt -in secret_encrypt.key -inkey key_kali.priv -out secret.key -pkeyopt rsa_padding_mode:oaep
