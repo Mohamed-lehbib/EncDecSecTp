@@ -140,6 +140,31 @@ openssl pkeyutl -encrypt -in 'TP1 - SI.pdf'  -pubin -inkey key_kali.pub -out tp_
 Then i got this error message `Public Key operation error
 20E0348AFFFF0000:error:0200006E:rsa routines:ossl_rsa_padding_add_PKCS1_OAEP_mgf1_ex:data too large for key size:../crypto/rsa/rsa_oaep.c:87:
 `
+29. i have switch to the ubuntu user and generated an aes 256 secret key
+```
+openssl rand -out secret.key -hex 32
+```
+30. then i have encrypted this key using my rsa public key
+```
+openssl pkeyutl -encrypt -in secret.key -pubin -inkey key_kali.pub -out secret_encrypt.key -pkeyopt rsa_padding_mode:oaep
+```
+31. Then i have sent the encrypted secret key to my kali user
+32. Then i have decrypted the secret encrypted key using the private key
+```
+openssl pkeyutl -decrypt -in secret_encrypt.key -inkey key_kali.priv -out secret.key -pkeyopt rsa_padding_mode:oaep
+```
+33. Then i have encrypted a large file using it
+```
+openssl enc -aes-256-cbc -in 'TP1 - SI.pdf' -out tp_enc.pdf -pass file:./secret.key
+```
+34. Then i have sent the file to my ubuntu user
+```
+scp tp_enc.pdf mohamed@192.168.100.140:/home/mohamed/Documents/Tp
+```
+35. Then i have decrypted the file in the ubuntu user
+```
+openssl enc -aes-256-cbc -d -in tp_enc.pdf -out tp.pdf -pass file:./secret.key
+```
 ## Transfer files using ssh
 
 - to transfer files we need to install ssh in case of ubuntu
