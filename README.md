@@ -131,7 +131,7 @@ scp hello_encrypted.txt kali@192.168.137.242:/home/kali/Documents/tpSec
 ```
 27. Then i have decrypted the file using the rsa private key
 ```
-openssl rsautl -decrypt -inkey key_kali.priv -in hello_encrypted.txt -out hello.txt
+openssl pkeyutl -decrypt -in hello_encrypted.txt -inkey key_kali.priv -out hello_decrypted.txt -pkeyopt rsa_padding_mode:oaep
 ```
 
 
