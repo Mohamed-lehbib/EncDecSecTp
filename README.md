@@ -109,9 +109,17 @@ openssl rsa -in key_kali.priv -des3 -out private_key_des3.des3
 ```
 echo "hello world" > file.txt 
 ```
+or 
+```
+cat <<q>> message.txt
+```
 - Then i have encrypted it using the rsa public Key
 ```
 openssl pkeyutl -encrypt -in file.txt -pubin -inkey key_kali.pub -out file_encrypted.txt -pkeyopt rsa_padding_mode:oaep
+```
+or and it the one used by the teacher
+```
+openssl pkeyutl -encrypt -pubin -inkey key_kali.pub -in message.txt -out encrypted_messaga.txt
 ```
 23. I have shared the public key to my ubuntu user using ssh
 ```
@@ -125,6 +133,10 @@ echo "Hello from ubuntu" > hello.txt
 ```
 openssl pkeyutl -encrypt -in file.txt -pubin -inkey key_kali.pub -out file_encrypted.txt -pkeyopt rsa_padding_mode:oaep
 ```
+or and it the one used by the teacher
+```
+openssl pkeyutl -encrypt -pubin -inkey key_kali.pub -in message.txt -out encrypted_messaga.txt
+```
 26. Then i have sent the encrypted file using ssh 
 ```
 scp hello_encrypted.txt kali@192.168.137.242:/home/kali/Documents/tpSec
@@ -132,6 +144,10 @@ scp hello_encrypted.txt kali@192.168.137.242:/home/kali/Documents/tpSec
 27. Then i have decrypted the file using the rsa private key
 ```
 openssl pkeyutl -decrypt -in hello_encrypted.txt -inkey key_kali.priv -out hello_decrypted.txt -pkeyopt rsa_padding_mode:oaep
+```
+or and it suggested by the teacher
+```
+openssl pkeyutl -decrypt -inkey key_kali.priv -in hello_encrypted.txt -out hello_decrypted.txt
 ```
 28. Then i have tried to encrypt a large file using the rsa Key
 ```
